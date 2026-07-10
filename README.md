@@ -1,30 +1,38 @@
 # 🤖 AI Chat Backend
 
-A production-oriented AI chat backend built with **FastAPI**, **Ollama**, and **PostgreSQL**.
+A scalable AI chat backend built with **FastAPI**, **Ollama**, **PostgreSQL**, and **SQLAlchemy**. This project is designed with a clean, modular architecture and follows production-ready development practices.
+
+---
 
 ## 🚀 Features
 
 * FastAPI REST API
-* Ollama integration for local LLMs
-* Streaming AI responses
-* Pydantic request and response validation
+* Local LLM integration with Ollama
+* PostgreSQL database
+* SQLAlchemy 2.0 ORM
+* Alembic database migrations
 * Modular project architecture
-* PostgreSQL integration
-* Environment variable configuration
-* Ready for JWT Authentication
-* Ready for conversation history
-* Scalable backend structure
+* Conversation-ready database design
+* Environment-based configuration
+* Streaming AI responses
+* Pydantic data validation
+* Ready for JWT authentication
+* Ready for Docker deployment
 
-## 🛠️ Tech Stack
+---
+
+## 🛠 Tech Stack
 
 * Python
 * FastAPI
-* Ollama
 * PostgreSQL
-* SQLAlchemy
+* SQLAlchemy 2.0
+* Alembic
+* Ollama
 * Pydantic
 * Uvicorn
-* Alembic (Coming Soon)
+
+---
 
 ## 📁 Project Structure
 
@@ -32,25 +40,72 @@ A production-oriented AI chat backend built with **FastAPI**, **Ollama**, and **
 app/
 ├── core/
 ├── database/
+│   ├── base.py
+│   ├── database.py
+│   └── dependencies.py
+├── models/
+│   ├── user.py
+│   ├── chat.py
+│   └── message.py
 ├── routers/
 ├── schemas/
 ├── services/
-├── models/
+├── repositories/
 └── main.py
+
+alembic/
+├── versions/
+└── env.py
 ```
 
-## 🎯 Roadmap
+---
 
-* [x] FastAPI setup
-* [x] Ollama integration
-* [x] Streaming responses
-* [x] PostgreSQL configuration
-* [ ] SQLAlchemy Models
-* [ ] Alembic Migrations
-* [ ] JWT Authentication
-* [ ] User Management
-* [ ] Conversation History
+## 🗄 Database Schema
 
-## 📌 Status
+```text
+User
+│
+└── Chat
+      │
+      └── Message
+```
 
-This project is currently under active development.
+* One User → Many Chats
+* One Chat → Many Messages
+
+---
+
+## 📌 Current Progress
+
+* ✅ FastAPI project initialized
+* ✅ Ollama integration completed
+* ✅ Streaming responses implemented
+* ✅ PostgreSQL connected
+* ✅ SQLAlchemy 2.0 configured
+* ✅ Alembic configured
+* ✅ Database migrations completed
+* ✅ User model implemented
+* ✅ Chat model implemented
+* ✅ Message model implemented
+* ✅ Entity relationships established
+
+---
+
+## 🔜 Upcoming Features
+
+* JWT Authentication
+* User Registration & Login
+* Chat CRUD Operations
+* Conversation Memory
+* Chat History
+* Prompt Templates
+* Repository Pattern
+* Service Layer
+* Docker Support
+* Unit & Integration Tests
+
+---
+
+## 📄 License
+
+This project is intended for educational purposes and production-ready backend architecture practice.
