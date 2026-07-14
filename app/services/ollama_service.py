@@ -1,31 +1,14 @@
-from ollama import chat
+import ollama
 
 
-# def ask_ai(prompt: str):
-#     response = chat(
-#         model="llama3.2",
-#         messages=[
-#             {
-#                 "role": "user",
-#                 "content": prompt
-#             }
-#         ]
-#     )
-#
-#     return response["message"]["content"]
+class OllamaService:
 
+    @staticmethod
+    def chat(messages: list[dict]) -> str:
 
-def stream_ai(prompt: str):
-    stream = chat(
-        model="llama3.2",
-        messages=[
-            {
-                "role": "user",
-                "content": prompt,
-            }
-        ],
-        stream=True,
-    )
+        response = ollama.chat(
+            model="llama3.2",
+            messages=messages
+        )
 
-    for chunk in stream:
-        yield chunk["message"]["content"]
+        return response["message"]["content"]

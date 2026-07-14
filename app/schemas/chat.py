@@ -1,11 +1,16 @@
 from pydantic import BaseModel
 
 
-class ChatRequest(BaseModel):
-    message: str
+class ChatCreate(BaseModel):
+    user_id: int
+    title: str
 
 
 class ChatResponse(BaseModel):
-    response: str
+    id: int
+    user_id: int
+    title: str
 
-
+    model_config = {
+        "from_attributes": True
+    }
