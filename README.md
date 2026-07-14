@@ -1,111 +1,173 @@
 # 🤖 AI Chat Backend
 
-A scalable AI chat backend built with **FastAPI**, **Ollama**, **PostgreSQL**, and **SQLAlchemy**. This project is designed with a clean, modular architecture and follows production-ready development practices.
+A production-style AI chat backend built with **FastAPI**, **Ollama**, **PostgreSQL**, and **SQLAlchemy 2.0**. The project follows a clean layered architecture using the **Repository Pattern** and **Service Layer**, providing persistent conversation memory powered by a local Large Language Model (LLM).
 
 ---
 
-## 🚀 Features
+# 🚀 Features
 
-* FastAPI REST API
-* Local LLM integration with Ollama
-* PostgreSQL database
-* SQLAlchemy 2.0 ORM
-* Alembic database migrations
-* Modular project architecture
-* Conversation-ready database design
-* Environment-based configuration
-* Streaming AI responses
-* Pydantic data validation
-* Ready for JWT authentication
-* Ready for Docker deployment
-
----
-
-## 🛠 Tech Stack
-
-* Python
-* FastAPI
-* PostgreSQL
-* SQLAlchemy 2.0
-* Alembic
-* Ollama
-* Pydantic
-* Uvicorn
+- ⚡ FastAPI REST API
+- 🧠 Local AI integration with Ollama
+- 💬 Persistent conversation memory
+- 🗄 PostgreSQL database
+- 🔥 SQLAlchemy 2.0 ORM
+- 📦 Alembic database migrations
+- 🏗 Clean Layered Architecture
+- 📂 Repository Pattern
+- ⚙️ Service Layer
+- ✅ Pydantic validation
+- 🌱 Environment-based configuration
+- 📜 Chat history support
+- 🧩 Modular project structure
+- 🚀 Production-ready project architecture
 
 ---
 
-## 📁 Project Structure
+# 🛠 Tech Stack
+
+- Python
+- FastAPI
+- PostgreSQL
+- SQLAlchemy 2.0
+- Alembic
+- Ollama
+- Pydantic
+- Uvicorn
+- python-dotenv
+
+---
+
+# 📁 Project Structure
 
 ```text
 app/
+│
 ├── core/
 ├── database/
 │   ├── base.py
 │   ├── database.py
 │   └── dependencies.py
+│
 ├── models/
 │   ├── user.py
 │   ├── chat.py
 │   └── message.py
-├── routers/
-├── schemas/
-├── services/
+│
 ├── repositories/
+│   ├── chat_repository.py
+│   └── message_repository.py
+│
+├── services/
+│   ├── chat_service.py
+│   ├── message_service.py
+│   └── ollama_service.py
+│
+├── routers/
+│   ├── chat_router.py
+│   └── message_router.py
+│
+├── schemas/
+│
 └── main.py
 
 alembic/
-├── versions/
-└── env.py
+└── versions/
 ```
 
 ---
 
-## 🗄 Database Schema
+# 🗄 Database Schema
 
 ```text
 User
-│
-└── Chat
-      │
-      └── Message
+ │
+ └────────────┐
+              │
+            Chat
+              │
+              │
+        ┌─────┴─────┐
+        │           │
+    Message     Message
+        │
+    (user)
+        │
+    (assistant)
 ```
 
-* One User → Many Chats
-* One Chat → Many Messages
+Relationships
+
+- One User → Many Chats
+- One Chat → Many Messages
 
 ---
 
-## 📌 Current Progress
+# 🔄 Chat Flow
 
-* ✅ FastAPI project initialized
-* ✅ Ollama integration completed
-* ✅ Streaming responses implemented
-* ✅ PostgreSQL connected
-* ✅ SQLAlchemy 2.0 configured
-* ✅ Alembic configured
-* ✅ Database migrations completed
-* ✅ User model implemented
-* ✅ Chat model implemented
-* ✅ Message model implemented
-* ✅ Entity relationships established
-
----
-
-## 🔜 Upcoming Features
-
-* JWT Authentication
-* User Registration & Login
-* Chat CRUD Operations
-* Conversation Memory
-* Chat History
-* Prompt Templates
-* Repository Pattern
-* Service Layer
-* Docker Support
-* Unit & Integration Tests
+```text
+Client
+   │
+   ▼
+FastAPI Router
+   │
+   ▼
+Chat Service
+   │
+   ├── Save User Message
+   │
+   ├── Load Conversation History
+   │
+   ├── Format Messages
+   │
+   ├── Send to Ollama
+   │
+   ├── Save AI Response
+   │
+   ▼
+PostgreSQL
+```
 
 ---
 
-## 📄 License
+# 📌 Current Progress
 
-This project is intended for educational purposes and production-ready backend architecture practice.
+- ✅ FastAPI project initialized
+- ✅ PostgreSQL integration
+- ✅ SQLAlchemy 2.0 ORM
+- ✅ Alembic migrations
+- ✅ User model
+- ✅ Chat model
+- ✅ Message model
+- ✅ Entity relationships
+- ✅ Repository Pattern
+- ✅ Service Layer
+- ✅ Ollama integration
+- ✅ Create chat endpoint
+- ✅ Create message endpoint
+- ✅ Retrieve conversation history
+- ✅ Persistent conversation memory
+- ✅ AI response persistence
+- ✅ Context-aware conversations
+
+---
+
+# 🔜 Roadmap
+
+- 🔐 JWT Authentication
+- 👤 User Registration & Login
+- 🔑 Authorization
+- 🌊 Streaming Responses
+- 📄 Prompt Templates
+- 🧠 RAG (Retrieval-Augmented Generation)
+- 📎 File Upload
+- 🌐 WebSocket Chat
+- 🐳 Docker & Docker Compose
+- ☁️ Deployment
+- 🧪 Unit Tests
+- 🔍 Integration Tests
+
+---
+
+# 📄 License
+
+This project is built for learning modern backend architecture, AI application development, and production-ready FastAPI practices.
